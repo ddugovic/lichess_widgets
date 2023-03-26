@@ -1,5 +1,5 @@
 /* Dark Style */
-.lichess_widget {
+.lishogi_widget {
 	font-family: "Open Sans","Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 	display: inline-block;
 	margin: 2px;
@@ -8,22 +8,22 @@
 	text-decoration: none;
 }
 
-.lichess_widget img {
+.lishogi_widget img {
 	margin: 0 10px 0 0;
 	display: inline-block;
 	height: 20px;
 	vertical-align: middle;
 }
-.lichess_widget span {
+.lishogi_widget span {
 	display: inline-block;
 	vertical-align: middle;
 }
 
-.lichess_long {
+.lishogi_long {
 	min-width: 220px;
 }
 
-.lichess_long hr {
+.lishogi_long hr {
 	margin: 6px 0 2px 0;
 	border: none;
 	height: 1px

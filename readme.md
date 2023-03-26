@@ -1,4 +1,4 @@
-Widgets for Lichess
+Widgets for Lishogi
 ===================
 
 Created by rubenwardy

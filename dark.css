@@ -1,20 +1,20 @@
 /* Dark Style */
-.lichess_theme_dark.lichess_widget {
+.lishogi_theme_dark.lishogi_widget {
 	background: #333;
 	border: 1px solid #444;
 	color: #acacac;
 	border-radius: 4px;
 }
 
-.lichess_theme_dark.lichess_widget:hover {
+.lishogi_theme_dark.lishogi_widget:hover {
 	background: #4A4A4A;
 }
 
-.lichess_theme_dark.lichess_long hr {
+.lishogi_theme_dark.lishogi_long hr {
 	background: #444;
 }
 
-.lichess_theme_dark.lichess_widget b {
+.lishogi_theme_dark.lishogi_widget b {
 	font-weight: 700;
 	font-size: 100%;
 }

@@ -1,4 +1,4 @@
-var lichess_widgets = (function() {
+var lishogi_widgets = (function() {
 	function fetchJson(url, callback) {
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = function() {
@@ -21,7 +21,7 @@ var lichess_widgets = (function() {
 		} else {
 			callbacks[name] = [ callback ];
 
-			fetchJson("https://en.lichess.org/api/user/" + name, function(data) {
+			fetchJson("https://lishogi.org/api/user/" + name, function(data) {
 				cache[name] = data;
 				for (var i = 0; i < callbacks[name].length; ++i) {
 					callbacks[name][i](data);
@@ -31,13 +31,11 @@ var lichess_widgets = (function() {
 		}
 	}
 
-	function make_online(id) {
-		var ele = document.getElementById(id);
-		ele.className = ele.className + " lichess_online";
-		ele.getElementsByTagName('img')[0].src = "https://rubenwardy.com/lichess_widgets/lichess_online.png";
+	function profile_logo(theme) {
+		return (theme == "dark") ? "https://lishogi1.org/assets/logo/lishogi-favicon-32-invert.png" : "https://lishogi1.org/assets/logo/lishogi-favicon-32.png";
 	}
 	function profile_logo(theme) {
-		return (theme == "dark") ? "https://lichess1.org/assets/logo/lichess-favicon-32-invert.png" : "https://lichess1.org/assets/logo/lichess-favicon-32.png";
+		return (theme == "dark") ? "https://lishogi1.org/assets/logo/lishogi-favicon-32-invert.png" : "https://lishogi1.org/assets/logo/lishogi-favicon-32.png";
 	}
 
 	function capitalize(inp) {
@@ -51,53 +49,44 @@ var lichess_widgets = (function() {
 			var id = serial;
 			if (text == null)
 				text = author;
-			var tmp = "<a  id=\"lichess_widget_" + id + "\" class=\"lichess_widget lichess_theme_" + theme;
-			tmp    += "\" href=\"https://lichess.org/@/" + author + "\">";
-			tmp    += "<img src=\"" + profile_logo(theme) + "\" alt=\"lichess\" />"
+			var tmp = "<a  id=\"lishogi_widget_" + id + "\" class=\"lishogi_widget lishogi_theme_" + theme;
+			tmp    += "\" href=\"https://lishogi.org/@/" + author + "\">";
+			tmp    += "<img src=\"" + profile_logo(theme) + "\" alt=\"lishogi\" />"
 			tmp    += "<span>" + text + "</span></a>";
 			document.write(tmp);
-			getAuthor(author, function(data) {
-				if (data.online)
-					make_online("lichess_widget_" + id);
-			});
+			getAuthor(author, function(data) {});
 		},
 		profile_scores: function(theme, author, text) {
 			serial++;
 			var id = serial;
 			if (text == undefined)
 				text = author;
-			var tmp = "<a id=\"lichess_widget_" + id + "\" class=\"lichess_widget lichess_theme_" + theme;
-			tmp    += "\" href=\"https://lichess.org/@/" + author + "\">";
-			tmp    += "<img src=\"" + profile_logo(theme) + "\" alt=\"lichess\" />"
+			var tmp = "<a id=\"lishogi_widget_" + id + "\" class=\"lishogi_widget lishogi_theme_" + theme;
+			tmp    += "\" href=\"https://lishogi.org/@/" + author + "\">";
+			tmp    += "<img src=\"" + profile_logo(theme) + "\" alt=\"lishogi\" />"
 			tmp    += "<span>" + text + "</span></a>";
 			document.write(tmp);
 			getAuthor(author, function(data) {
-				if (data.online)
-					make_online("lichess_widget_" + id);
-
 				if (text && text != "")
 					text = text + " | ";
 
 				var res = text + "Classical <b>" + data.perfs.classical.rating;
-				res    += "</b> | Bullet <b>" + data.perfs.bullet.rating + "</b>";
+				res    += "</b> | Blitz <b>" + data.perfs.blitz.rating + "</b>";
 
-				document.getElementById("lichess_widget_" + id).getElementsByTagName('span')[0].innerHTML = res;
+				document.getElementById("lishogi_widget_" + id).getElementsByTagName('span')[0].innerHTML = res;
 			});
 		},
 		profile_big: function(theme, author, text) {
 			serial++;
 			var id = serial;
 			if (text == undefined)
-				text = author + " on Lichess";
-			var tmp = "<a id=\"lichess_widget_" + id + "\" class=\"lichess_widget lichess_theme_" + theme;
-			tmp    += " lichess_long\" href=\"https://lichess.org/@/" + author + "\">";
-			tmp    += "<img src=\"" + profile_logo(theme) + "\" alt=\"lichess\" />" + text + "<hr />"
+				text = author + " on Lishogi";
+			var tmp = "<a id=\"lishogi_widget_" + id + "\" class=\"lishogi_widget lishogi_theme_" + theme;
+			tmp    += " lishogi_long\" href=\"https://lishogi.org/@/" + author + "\">";
+			tmp    += "<img src=\"" + profile_logo(theme) + "\" alt=\"lishogi\" />" + text + "<hr />"
 			tmp    += "<span></span></a>";
 			document.write(tmp);
 			getAuthor(author, function(data) {
-				if (data.online)
-					make_online("lichess_widget_" + id);
-
 				var res = "";
 				for (var key in data.perfs) {
 					if (data.perfs.hasOwnProperty(key) && data.perfs[key].games > 0) {
@@ -106,7 +95,7 @@ var lichess_widgets = (function() {
 						res += capitalize(key) + " <b>" + data.perfs[key].rating + "</b> / " + data.perfs[key].games + " Games";
 					}
 				}
-				document.getElementById("lichess_widget_" + id).getElementsByTagName('span')[0].innerHTML = res;
+				document.getElementById("lishogi_widget_" + id).getElementsByTagName('span')[0].innerHTML = res;
 			});
 		}
 	}
